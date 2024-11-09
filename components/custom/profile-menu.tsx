@@ -7,16 +7,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Text } from "../ui/text";
-import Animated, { FadeIn } from "react-native-reanimated";
-import { Pressable } from "react-native";
+import { Pressable, TouchableOpacity } from "react-native";
 
 const GITHUB_AVATAR_URI =
   "https://i.pinimg.com/originals/ef/a2/8d/efa28d18a04e7fa40ed49eeb0ab660db.jpg";
@@ -25,12 +20,12 @@ const ProfileMenu: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Pressable onPress={() => {}}>
+        <TouchableOpacity className="p-2">
           {/* Avatar */}
           <Avatar alt="Rick Sanchez's Avatar" className="w-8 h-8 ml-2">
             <AvatarImage source={{ uri: GITHUB_AVATAR_URI }} />
           </Avatar>
-        </Pressable>
+        </TouchableOpacity>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-64 native:w-72 mt-4">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>

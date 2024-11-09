@@ -5,12 +5,20 @@ import { ThemeToggle } from "../ThemeToggle";
 import ProfileMenu from "./profile-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Image } from "react-native-svg";
+import { useColorScheme } from "~/lib/useColorScheme";
 
 interface HeaderProps {
   onMenuPress: () => void;
 }
 
+const GITHUB_LOGO_LIGHT =
+  "https://github.com/maneeshaindrachapa/Neon/blob/main/assets/images/logo-light.png?raw=true";
+const GITHUB_LOGO_DARK =
+  "https://github.com/maneeshaindrachapa/Neon/blob/main/assets/images/logo-dark.png?raw=true";
+
 const Header: React.FC<HeaderProps> = ({ onMenuPress }) => {
+  const { colorScheme } = useColorScheme();
+
   return (
     <View
       style={styles.container}
@@ -19,9 +27,14 @@ const Header: React.FC<HeaderProps> = ({ onMenuPress }) => {
       {/* Left Menu Icon */}
       <TouchableOpacity onPress={onMenuPress} className="p-2">
         <Avatar alt="app-icon" className="w-8 h-8 ml-2">
-          <AvatarImage
-            source={{ uri: require("../../assets/images/logo-light.png") }}
-          />
+          {
+            <AvatarImage
+              source={{
+                uri:
+                  colorScheme === "dark" ? GITHUB_LOGO_LIGHT : GITHUB_LOGO_DARK,
+              }}
+            />
+          }
           <AvatarFallback>
             <Text>ZN</Text>
           </AvatarFallback>
@@ -46,9 +59,6 @@ const styles = StyleSheet.create({
   rightControls: {
     flexDirection: "row",
     alignItems: "center",
-  },
-  avatar: {
-    marginLeft: 10,
   },
 });
 
